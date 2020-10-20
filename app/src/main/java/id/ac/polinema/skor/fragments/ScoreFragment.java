@@ -6,16 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import id.ac.polinema.skor.models.GoalScorer;
+import id.ac.polinema.skor.databinding.FragmentScoreBinding;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ScoreFragment extends Fragment {
+	FragmentScoreBinding binding;
+
 
 	public static final String HOME_REQUEST_KEY = "home";
 	public static final String AWAY_REQUEST_KEY = "away";
@@ -38,14 +42,23 @@ public class ScoreFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		return null;
+		binding = FragmentScoreBinding.inflate(inflater,container,false);
+		View view = binding.getRoot();
+
+		return view;
 	}
 
 	public void onAddHomeClick(View view) {
+		ScoreFragmentDirections.GoalScorerAction action = ScoreFragmentDirections.goalScorerAction(HOME_REQUEST_KEY);
+		Navigation.findNavController(view).navigate(action);
 
 	}
 
 	public void onAddAwayClick(View view) {
+		ScoreFragmentDirections.GoalScorerAction action = ScoreFragmentDirections.goalScorerAction(AWAY_REQUEST_KEY);
+		Navigation.findNavController(view).navigate(action);
+
+
 
 	}
 
